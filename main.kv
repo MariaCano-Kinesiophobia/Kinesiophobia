@@ -1,0 +1,388 @@
+#:kivy 2.2.0
+#:import MDFillRoundFlatButton kivymd.uix.button.MDFillRoundFlatButton
+#:import MDFlatButton kivymd.uix.button.MDFlatButton
+
+<LoginScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: ["40dp", "60dp", "40dp", "40dp"]
+        spacing: "30dp"
+        md_bg_color: 1, 1, 1, 1
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "100dp"
+            padding: "20dp"
+
+        Image:
+            id: logo_image
+            source: "assets/logo.png"
+            size_hint: None, None
+            size: "150dp", "150dp"
+            pos_hint: {"center_x": .5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: "30dp"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: ["20dp", "20dp", "20dp", "20dp"]
+
+            MDLabel:
+                text: "Bienvenido"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 0.87
+                font_size: "26sp"
+                size_hint_y: None
+                height: self.texture_size[1]
+                bold: True
+                padding: [0, 0, 0, "20dp"]
+
+            MDLabel:
+                text: "Inicie sesión para continuar"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 0.54
+                font_size: "14sp"
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding: [0, 0, 0, "30dp"]
+
+            MDTextField:
+                id: username
+                hint_text: "Cédula"
+                helper_text: "Ingrese su número de cédula"
+                helper_text_mode: "on_focus"
+                icon_right: "account"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                mode: "fill"
+                text_color: 0, 0, 0, 0.87
+                line_color_normal: 0.61, 0.15, 0.69, 1
+                font_size: "16sp"
+                helper_text_color_normal: 0, 0, 0, 0.54
+                helper_text_font_size: "12sp"
+
+            MDTextField:
+                id: password
+                hint_text: "Contraseña"
+                helper_text: "Ingrese su contraseña"
+                helper_text_mode: "on_focus"
+                password: True
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                mode: "fill"
+                text_color: 0, 0, 0, 0.87
+                line_color_normal: 0.61, 0.15, 0.69, 1
+                font_size: "16sp"
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: "20dp"
+                size_hint_y: None
+                height: self.minimum_height
+                pos_hint: {"center_x": .5}
+                padding: [0, "30dp", 0, 0]
+
+                MDFillRoundFlatButton:
+                    text: "Iniciar Sesión"
+                    size_hint_x: None
+                    width: "320dp"
+                    pos_hint: {"center_x": .5}
+                    md_bg_color: 0.61, 0.15, 0.69, 1
+                    on_release: root.verify_credentials()
+                    font_size: "16sp"
+                    padding: ["24dp", "12dp"]
+
+                MDFlatButton:
+                    text: "¿No tiene cuenta? Regístrese aquí"
+                    theme_text_color: "Custom"
+                    text_color: 0.61, 0.15, 0.69, 1
+                    pos_hint: {"center_x": .5}
+                    on_release: root.manager.current = 'registro'
+                    font_size: "14sp"
+
+<RegistroScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: ["40dp", "40dp", "40dp", "40dp"]
+        spacing: "30dp"
+        md_bg_color: 1, 1, 1, 1
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "80dp"
+
+            MDIconButton:
+                icon: "arrow-left"
+                theme_icon_color: "Custom"
+                icon_color: 0.61, 0.15, 0.69, 1
+                on_release: root.manager.current = 'login'
+                pos_hint: {"center_y": .5}
+
+            MDLabel:
+                text: "Registro de Usuario"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 0.87
+                font_size: "24sp"
+                bold: True
+                size_hint_y: None
+                height: self.texture_size[1]
+                pos_hint: {"center_y": .5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: "20dp"
+            size_hint_y: None
+            height: self.minimum_height
+            padding: ["20dp", "20dp", "20dp", "20dp"]
+
+            MDTextField:
+                id: register_cedula
+                hint_text: "Cédula"
+                helper_text: "Ingrese su número de cédula"
+                helper_text_mode: "on_focus"
+                icon_right: "card-account-details"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                mode: "fill"
+                text_color: 0, 0, 0, 0.87
+                line_color_normal: 0.61, 0.15, 0.69, 1
+                font_size: "16sp"
+                helper_text_color_normal: 0, 0, 0, 0.54
+                helper_text_font_size: "12sp"
+
+            MDTextField:
+                id: register_nombre
+                hint_text: "Nombre"
+                helper_text: "Ingrese su nombre"
+                helper_text_mode: "on_focus"
+                icon_right: "account"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                mode: "fill"
+                text_color: 0, 0, 0, 0.87
+                line_color_normal: 0.61, 0.15, 0.69, 1
+                font_size: "16sp"
+                helper_text_color_normal: 0, 0, 0, 0.54
+                helper_text_font_size: "12sp"
+
+            MDTextField:
+                id: register_apellido
+                hint_text: "Apellido"
+                helper_text: "Ingrese su apellido"
+                helper_text_mode: "on_focus"
+                icon_right: "account"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                mode: "fill"
+                text_color: 0, 0, 0, 0.87
+                line_color_normal: 0.61, 0.15, 0.69, 1
+                font_size: "16sp"
+                helper_text_color_normal: 0, 0, 0, 0.54
+                helper_text_font_size: "12sp"
+
+            MDTextField:
+                id: register_password
+                hint_text: "Contraseña"
+                helper_text: "Ingrese su contraseña"
+                helper_text_mode: "on_focus"
+                password: True
+                icon_right: "eye-off"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                mode: "fill"
+                text_color: 0, 0, 0, 0.87
+                line_color_normal: 0.61, 0.15, 0.69, 1
+                font_size: "16sp"
+
+            MDFillRoundFlatButton:
+                text: "Registrarse"
+                size_hint_x: None
+                width: "320dp"
+                pos_hint: {"center_x": .5}
+                md_bg_color: 0.61, 0.15, 0.69, 1
+                on_release: root.registrar_usuario()
+                font_size: "16sp"
+                padding: ["24dp", "12dp"]
+                margin: [0, "30dp", 0, 0]
+
+<Cuestionario>:
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: ["16dp", "16dp", "16dp", "16dp"]
+        spacing: "16dp"
+        md_bg_color: 1, 1, 1, 1
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "56dp"
+            padding: ["8dp", "8dp", "8dp", "8dp"]
+            md_bg_color: 0.61, 0.15, 0.69, 1
+            radius: [8, 8, 0, 0]
+
+            MDLabel:
+                text: "Cuestionario TSK-11"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                font_size: "20sp"
+                bold: True
+                size_hint_y: None
+                height: self.texture_size[1]
+                pos_hint: {"center_y": .5}
+
+        ScrollView:
+            MDBoxLayout:
+                id: preguntas_layout
+                orientation: 'vertical'
+                spacing: "16dp"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: ["8dp", "8dp", "8dp", "8dp"]
+
+        Widget:
+            size_hint_y: None
+            height: "16dp"
+
+        MDRaisedButton:
+            text: "Enviar respuestas"
+            size_hint_x: None
+            width: "200dp"
+            height: "48dp"
+            pos_hint: {"center_x": .5}
+            md_bg_color: 0.61, 0.15, 0.69, 1
+            on_release: root.enviar_respuestas(self)
+            font_size: "16sp"
+
+<SeguimientoAnguloScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<SplashScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: "20dp"
+        padding: "40dp"
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+        Image:
+            id: logo_image
+            source: "assets/logo.png"
+            size_hint: None, None
+            size: "150dp", "150dp"
+            pos_hint: {"center_x": .5}
+
+        MDLabel:
+            text: "Cargando..."
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0.61, 0.15, 0.69, 1
+            font_size: "24sp"
+            bold: True
+
+        MDSpinner:
+            size_hint: None, None
+            size: "46dp", "46dp"
+            pos_hint: {"center_x": .5}
+            active: True
+            color: 0.61, 0.15, 0.69, 1
+
+<HistoryScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: ["16dp", "0dp", "16dp", "16dp"]
+        spacing: "16dp"
+        md_bg_color: 1, 1, 1, 1
+
+        MDTopAppBar:
+            title: "Historial"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+            md_bg_color: 0.61, 0.15, 0.69, 1
+            specific_text_color: 1, 1, 1, 1
+
+        MDTabs:
+            background_color: 0.93, 0.93, 0.93, 1
+            indicator_color: 0.61, 0.15, 0.69, 1
+            text_color_normal: 0, 0, 0, 0.54
+            text_color_active: 0.61, 0.15, 0.69, 1
+
+<TwoLineAvatarListItem>:
+    ripple_behavior: True
+    md_bg_color: 0.98, 0.98, 0.98, 1
+    radius: [8]
+    elevation: 1
+    _no_ripple_effect: True
+
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [8]
+
+    ImageLeftWidget:
+        radius: [4]
+
+<ThreeLineAvatarListItem>:
+    ripple_behavior: True
+    md_bg_color: 0.98, 0.98, 0.98, 1
+    radius: [8]
+    elevation: 1
+    _no_ripple_effect: True
+
+    canvas.before:
+        Color:
+            rgba: 0.98, 0.98, 0.98, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [8]
